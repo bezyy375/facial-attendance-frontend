@@ -1,5 +1,12 @@
 # Change Log
 
+## [1.0.1] 2022-11-05
+### Improvements
+
+- Added `env.sample`
+- `API_URL` can be specified in `env` (optional)
+  - data used in `src/config.js`  
+
 ## [1.0.0] 2022-11-05
 ### Improvements
 
