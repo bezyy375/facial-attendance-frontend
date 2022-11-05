@@ -5,7 +5,9 @@
 * [React Node JS Berry](https://appseed.us/product/berry-dashboard/api-server-nodejs/react/) - product page
 * [React Node JS Berry](https://react-node-js-berry-dashboard.appseed-srv1.com/) - LIVE Demo
 
-> Features
+<br />
+
+> 🚀 Built with **[React App Generator](https://appseed.us/generator/react/)**
 
 - Modern aesthetics UI design - Designed by *CodedThemes*
 - React, Redux, Redux-persist
