@@ -18,7 +18,7 @@
 
 <br />
 
-> ## Tests
+## Tests
 
 > `Compatibility matrix` tested with [Render API Wrapper](https://github.com/app-generator/deploy-automation-render).
 
