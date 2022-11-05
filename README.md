@@ -2,17 +2,17 @@
 
 **Berry** is a creative **[React Dashboard](https://appseed.us/product/berry-dashboard/api-server-nodejs/react/)** built using the `Material-UI`. It is meant to be the best User Experience with highly customizable feature-riched pages. It is a complete game-changer **React Dashboard** with an easy and intuitive responsive design as on retina screens or laptops. The product comes with a simple JWT authentication flow: `login`/`register`/`logout` powered by an open-source **Node JS API** Backend via `Passport` Library.
 
-* [React Node JS Berry](https://appseed.us/product/berry-dashboard/api-server-nodejs/react/) - product page
-* [React Node JS Berry](https://react-node-js-berry-dashboard.appseed-srv1.com/) - LIVE Demo
+- 👉 [React Node JS Berry](https://appseed.us/product/berry-dashboard/api-server-nodejs/react/) - product page
+- 👉 [React Node JS Berry](https://react-node-js-berry-dashboard.appseed-srv1.com/) - LIVE Demo
 
 <br />
 
 > 🚀 Built with **[React App Generator](https://appseed.us/generator/react/)**
 
-- Modern aesthetics UI design - Designed by *CodedThemes*
-- React, Redux, Redux-persist
-- Authentication: JWT Login/Register/Logout
-- **Full-stack Ready** using a **Node JS API Server** (open-source project) - Server Features
+- ✅ Modern aesthetics UI design - Designed by *CodedThemes*
+- ✅ React, Redux, Redux-persist
+- ✅ Authentication: JWT Login/Register/Logout
+- ✅ **Full-stack Ready** using a **Node JS API Server** (open-source project) - Server Features
   - `Typescript` / SQLite Persistence / TypeORM / Joy (validation)
   - Passport library - `passport-jwt` strategy.
 
