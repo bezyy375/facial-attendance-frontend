@@ -1,5 +1,12 @@
 # Change Log
 
+## [1.0.0] 2022-11-05
+### Improvements
+
+- `Update DOCS` (README)
+- Added `compatibility matrix` for Node, yarn & NPM
+  Testing tool: [Render API Wrapper](https://github.com/app-generator/deploy-automation-render)
+
 ## [0.0.5] 2021-07-09
 ### Added Docker Support
 
