@@ -18,6 +18,8 @@
 
 > ## Tests
 
+> `Compatibility matrix` tested with [Render API Wrapper](https://github.com/app-generator/deploy-automation-render).
+
 | NodeJS | NPM | YARN | 
 | --- | --- | --- |  
 | `v14.0.0` | ✅ | ✅ |
