@@ -1,20 +1,20 @@
-# [React Berry Dashboard](https://appseed.us/product/berry-dashboard/api-server-nodejs/react/) 
+# [React Berry Dashboard](https://appseed.us/product/berry-dashboard/api-server-nodejs/react/)
 
 **Berry** is a creative **[React Dashboard](https://appseed.us/product/berry-dashboard/api-server-nodejs/react/)** built using the `Material-UI`. It is meant to be the best User Experience with highly customizable feature-riched pages. It is a complete game-changer **React Dashboard** with an easy and intuitive responsive design as on retina screens or laptops. The product comes with a simple JWT authentication flow: `login`/`register`/`logout` powered by an open-source **Node JS API** Backend via `Passport` Library.
 
-- 👉 [React Node JS Berry](https://appseed.us/product/berry-dashboard/api-server-nodejs/react/) - product page
-- 👉 [React Node JS Berry](https://react-node-js-berry-dashboard.appseed-srv1.com/) - LIVE Demo
+-   👉 [React Node JS Berry](https://appseed.us/product/berry-dashboard/api-server-nodejs/react/) - product page
+-   👉 [React Node JS Berry](https://react-node-js-berry-dashboard.appseed-srv1.com/) - LIVE Demo
 
 <br />
 
 > 🚀 Built with **[React App Generator](https://appseed.us/generator/react/)**
 
-- ✅ Modern aesthetics UI design - Designed by *CodedThemes*
-- ✅ React, Redux, Redux-persist
-- ✅ Authentication: JWT Login/Register/Logout
-- ✅ **Full-stack Ready** using a **Node JS API Server** (open-source project) - Server Features
-  - `Typescript` / SQLite Persistence / TypeORM / Joy (validation)
-  - Passport library - `passport-jwt` strategy.
+-   ✅ Modern aesthetics UI design - Designed by _CodedThemes_
+-   ✅ React, Redux, Redux-persist
+-   ✅ Authentication: JWT Login/Register/Logout
+-   ✅ **Full-stack Ready** using a **Node JS API Server** (open-source project) - Server Features
+    -   `Typescript` / SQLite Persistence / TypeORM / Joy (validation)
+    -   Passport library - `passport-jwt` strategy.
 
 <br />
 
@@ -22,11 +22,11 @@
 
 > `Compatibility matrix` tested with [Render API Wrapper](https://github.com/app-generator/deploy-automation-render).
 
-| NodeJS | NPM | YARN | 
-| --- | --- | --- |  
-| `v14.0.0` | ✅ | ✅ |
-| `v16.0.0` | ✅ | ✅ | 
-| `v18.0.0` | ❌ | ❌ | 
+| NodeJS    | NPM | YARN |
+| --------- | --- | ---- |
+| `v14.0.0` | ✅  | ✅   |
+| `v16.0.0` | ✅  | ✅   |
+| `v18.0.0` | ❌  | ❌   |
 
 <br />
 
@@ -42,9 +42,9 @@ $ cd react-berry-dashboard
 > Start the app in Docker
 
 ```bash
-$ docker-compose pull  # download dependencies 
+$ docker-compose pull  # download dependencies
 $ docker-compose build # local set up
-$ docker-compose up    # start the app 
+$ docker-compose up    # start the app
 ```
 
 The React UI starts on port `3000` and expects an API server on port `5000` (saved in configuration).
@@ -57,12 +57,12 @@ The React UI starts on port `3000` and expects an API server on port `5000` (sav
 
 > **Note**: This product can be used with other API Servers for a complete full-stack experience. **ALL API servers use a unified interface**
 
-- [Django API Server](https://github.com/app-generator/api-server-django) - open-source product
-- [Flask API Server](https://github.com/app-generator/api-server-flask) - open-source product
-- [Node JS API Server](https://github.com/app-generator/api-server-nodejs) - open-source product / Typescript / SQLite / TypeORM / Joy for validation
-- [Node JS API Server PRO](https://github.com/app-generator/api-server-nodejs-pro) - **commercial product**
-    - Typescript / SQLite / TypeORM / Joy Validation / Docker
-    - Typescript / MongoDB / Mongoose / Joy Validation / Docker (separate branch, same project)
+-   [Django API Server](https://github.com/app-generator/api-server-django) - open-source product
+-   [Flask API Server](https://github.com/app-generator/api-server-flask) - open-source product
+-   [Node JS API Server](https://github.com/app-generator/api-server-nodejs) - open-source product / Typescript / SQLite / TypeORM / Joy for validation
+-   [Node JS API Server PRO](https://github.com/app-generator/api-server-nodejs-pro) - **commercial product**
+    -   Typescript / SQLite / TypeORM / Joy Validation / Docker
+    -   Typescript / MongoDB / Mongoose / Joy Validation / Docker (separate branch, same project)
 
 <br />
 
@@ -92,7 +92,7 @@ $ yarn
 **Step 3** - Start in development mode
 
 ```bash
-$ npm run start 
+$ npm run start
 // OR
 $ yarn start
 ```
@@ -101,14 +101,14 @@ $ yarn start
 
 ## Configure the backend server
 
-The product comes with a usable JWT Authentication flow that provides only the basic requests: login/logout/register. 
+The product comes with a usable JWT Authentication flow that provides only the basic requests: login/logout/register.
 
-**API Server URL** - `src/config/constant.js` 
+**API Server URL** - `src/config/constant.js`
 
 ```javascript
 const config = {
     ...
-    API_SERVER: 'http://localhost:5000/api/'  // <-- The magic line
+    API_SERVER: 'http://localhost:8000/api/'  // <-- The magic line
 };
 ```
 
@@ -118,7 +118,7 @@ const config = {
 
 The API Server signature is provided by the [Unified API Definition](https://docs.appseed.us/boilerplate-code/api-unified-definition)
 
-- [API POSTMAN Collection](https://github.com/app-generator/api-server-unified/blob/main/api.postman_collection.json) - can be used to mock (simulate) the backend server or code a new one in your preferred framework. 
+-   [API POSTMAN Collection](https://github.com/app-generator/api-server-unified/blob/main/api.postman_collection.json) - can be used to mock (simulate) the backend server or code a new one in your preferred framework.
 
 <br />
 
@@ -126,14 +126,14 @@ The API Server signature is provided by the [Unified API Definition](https://doc
 
 The product is also open-source and is already configured to work with Berry Dashboard Template - product features:
 
-- Typescript / `NodeJS` / `Express` Server
-- JWT authentication (`passport-jwt` strategy)
-- Persistence: `SQLite` / `TypeORM`
+-   Typescript / `NodeJS` / `Express` Server
+-   JWT authentication (`passport-jwt` strategy)
+-   Persistence: `SQLite` / `TypeORM`
 
 > Links
 
-- [Node JS API](https://github.com/app-generator/api-server-nodejs) - source code
-- [Node JS API](https://appseed.us/boilerplate-code/nodejs-starter) - product page
+-   [Node JS API](https://github.com/app-generator/api-server-nodejs) - source code
+-   [Node JS API](https://appseed.us/boilerplate-code/nodejs-starter) - product page
 
 <br />
 
@@ -162,7 +162,7 @@ $ yarn
 
 ```
 $ npm run typeorm migration:run
-// OR 
+// OR
 $ yarn typeorm migration:run
 ```
 
@@ -176,7 +176,8 @@ $ yarn dev
 
 The API server will start using the `PORT` specified in `.env` file (default 5000).
 
-<br /> 
+<br />
 
 ---
+
 [React Berry Dashboard](https://appseed.us/product/berry-dashboard/api-server-nodejs/react/) - Provided by [CodedThemes](https://codedthemes.com/) and **AppSeed [App Generator](https://appseed.us/generator)**.

@@ -5,6 +5,7 @@ import { Route, Switch, useLocation } from 'react-router-dom';
 import MainLayout from './../layout/MainLayout';
 import Loadable from '../ui-component/Loadable';
 import AuthGuard from './../utils/route-guard/AuthGuard';
+// import MarkAttendance from '../views/1_AttendanceViews/markattendance-page';
 
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('../views/dashboard/Default')));
@@ -18,6 +19,13 @@ const UtilsTablerIcons = Loadable(lazy(() => import('../views/utilities/TablerIc
 
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('../views/sample-page')));
+
+
+const AddMember = Loadable(lazy(() => import('../views/addmember-page')));
+const ViewMembers = Loadable(lazy(() => import('../views/0_MemberViews/viewmembers-page')));
+const MarkAttendance = Loadable(lazy(() => import('../views/1_AttendanceViews/markattendance-page')));
+const ViewAttendance = Loadable(lazy(() => import('../views/1_AttendanceViews/viewattendance-page')));
+
 
 //-----------------------|| MAIN ROUTING ||-----------------------//
 
@@ -35,7 +43,12 @@ const MainRoutes = () => {
                 '/icons/tabler-icons',
                 '/icons/material-icons',
 
-                '/sample-page'
+                '/sample-page',
+
+                '/addmember-page',
+                '/viewmembers-page',
+                '/markattendance-page',
+                '/viewattendance-page',
             ]}
         >
             <MainLayout>
@@ -50,6 +63,10 @@ const MainRoutes = () => {
                         <Route path="/icons/material-icons" component={UtilsMaterialIcons} />
 
                         <Route path="/sample-page" component={SamplePage} />
+                        <Route path="/addmember-page" component={AddMember} />
+                        <Route path="/viewmembers-page" component={ViewMembers} />
+                        <Route path="/markattendance-page" component={MarkAttendance} />
+                        <Route path="/viewattendance-page" component={ViewAttendance} />
                     </AuthGuard>
                 </Switch>
             </MainLayout>

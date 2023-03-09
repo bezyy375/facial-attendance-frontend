@@ -123,13 +123,23 @@ const RestRegister = ({ ...others }) => {
                 onSubmit={(values, { setErrors, setStatus, setSubmitting }) => {
                     try {
                         axios
-                            .post( configData.API_SERVER + 'users/register', {
-                                username: values.username,
+                            // .post( configData.API_SERVER + 'register/', {
+                            .post( 'http://127.0.0.1:9001/register', {
+                                // username: values.username,
+                                email: values.email,
                                 password: values.password,
-                                email: values.email
+                                password2: values.password,
+                              
+
+                                // email: "m6@gmail.com",
+                                // password: "test@1234",
+                                // password2: "test@1234"
                             })
                             .then(function (response) {
-                                if (response.data.success) {
+
+                                console.log({resgisterRequestResponse: response})
+
+                                if (response.status == 201) {
                                     history.push('/login');
                                 } else {
                                     setStatus({ success: false });
@@ -138,6 +148,8 @@ const RestRegister = ({ ...others }) => {
                                 }
                             })
                             .catch(function (error) {
+                                console.log({resgisterRequestError: error})
+
                                 setStatus({ success: false });
                                 setErrors({ submit: error.response.data.msg });
                                 setSubmitting(false);

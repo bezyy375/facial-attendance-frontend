@@ -4,13 +4,13 @@ import React from 'react';
 import { Typography } from '@material-ui/core';
 
 // project imports
-import MainCard from '../../ui-component/cards/MainCard';
+import MainCard from '../../../ui-component/cards/MainCard';
 
 //==============================|| SAMPLE PAGE ||==============================//
 
-const SamplePage = () => {
+const  ViewMembers = () => {
     return (
-        <MainCard title="Sample Page">
+        <MainCard title="ViewMembers">
             <Typography variant="body2">
                 Lorem ipsum dolor sit amen, consenter nipissing eli, sed do elusion tempos incident ut laborers et doolie magna alissa. Ut
                 enif ad minim venice, quin nostrum exercitation illampu laborings nisi ut liquid ex ea commons construal. Duos aube grue
@@ -21,4 +21,4 @@ const SamplePage = () => {
     );
 };
 
-export default SamplePage;
+export default ViewMembers;
