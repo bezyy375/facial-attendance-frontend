@@ -96,8 +96,8 @@ const RestLogin = (props, { ...others }) => {
         <React.Fragment>
             <Formik
                 initialValues={{
-                    email: 'm@gmail.com',
-                    password: 'test@1234',
+                    email: 'test@mail.com',
+                    password: 'p123456.',
                     submit: null
                 }}
                 validationSchema={Yup.object().shape({

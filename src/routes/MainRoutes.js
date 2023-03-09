@@ -20,12 +20,10 @@ const UtilsTablerIcons = Loadable(lazy(() => import('../views/utilities/TablerIc
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('../views/sample-page')));
 
-
-const AddMember = Loadable(lazy(() => import('../views/addmember-page')));
+const AddMember = Loadable(lazy(() => import('../views/0_MemberViews/addmember-page')));
 const ViewMembers = Loadable(lazy(() => import('../views/0_MemberViews/viewmembers-page')));
 const MarkAttendance = Loadable(lazy(() => import('../views/1_AttendanceViews/markattendance-page')));
 const ViewAttendance = Loadable(lazy(() => import('../views/1_AttendanceViews/viewattendance-page')));
-
 
 //-----------------------|| MAIN ROUTING ||-----------------------//
 
@@ -48,7 +46,7 @@ const MainRoutes = () => {
                 '/addmember-page',
                 '/viewmembers-page',
                 '/markattendance-page',
-                '/viewattendance-page',
+                '/viewattendance-page'
             ]}
         >
             <MainLayout>
