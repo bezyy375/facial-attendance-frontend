@@ -107,14 +107,14 @@ const RestLogin = (props, { ...others }) => {
                 onSubmit={(values, { setErrors, setStatus, setSubmitting }) => {
                     try {
                         axios
-                            .post( configData.API_SERVER + 'login', {
+                            .post(configData.API_SERVER + 'login', {
                                 password: values.password,
                                 email: values.email
                             })
                             .then(function (response) {
-                                console.log({apiResonse: response});
+                                console.log({ apiResonse: response });
                                 if (response.data.success) {
-                                    console.log({responseData: response.data});
+                                    console.log({ responseData: response.data });
                                     dispatcher({
                                         type: ACCOUNT_INITIALIZE,
                                         payload: { isLoggedIn: true, user: response.data.user, token: response.data.token }
@@ -130,18 +130,18 @@ const RestLogin = (props, { ...others }) => {
                                 }
                             })
                             .catch(function (error) {
-                                console.log({loginResponseError: error})
+                                console.log({ loginResponseError: error });
                                 setStatus({ success: false });
                                 // setErrors({ submit: error.response.data.msg });
-                                setErrors({ submit: "Invalid email/password." });
+                                setErrors({ submit: 'Invalid email/password.' });
                                 setSubmitting(false);
                             });
                     } catch (err) {
-                        console.error({loginErrorMsg: err});
+                        console.error({ loginErrorMsg: err });
                         if (scriptedRef.current) {
                             setStatus({ success: false });
                             // setErrors({ submit: err.message });
-                            setErrors({ submit: "Invalid email/password." });
+                            setErrors({ submit: 'Invalid email/password.' });
 
                             setSubmitting(false);
                         }

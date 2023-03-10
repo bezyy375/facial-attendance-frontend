@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 // material-ui
 import {
@@ -14,10 +14,13 @@ import {
     IconButton,
     InputAdornment,
     InputLabel,
+    Modal,
     OutlinedInput,
     Stack,
     Typography
 } from '@material-ui/core';
+
+import Webcam from 'react-webcam';
 
 import * as Yup from 'yup';
 import { Formik } from 'formik';
@@ -27,6 +30,9 @@ import AnimateButton from '../../../ui-component/extended/AnimateButton';
 import MainCard from '../../../ui-component/cards/MainCard';
 
 import CloudUploadIcon from '@material-ui/icons/CloudUploadOutlined';
+import CapturePictureIcon from '@material-ui/icons/CameraAlt';
+import ReCapturePictureIcon from '@material-ui/icons/FlipCameraIos';
+import MarkAttendanceIcon from '@material-ui/icons/CheckCircle';
 
 //==============================|| SAMPLE PAGE ||==============================//
 
@@ -68,6 +74,18 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+const modalStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4
+};
+
 const AddMember = (props, { ...others }) => {
     const classes = useStyles();
 
@@ -78,6 +96,28 @@ const AddMember = (props, { ...others }) => {
     );
 
     const [userPicture, setUserPicture] = useState('--');
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const webcamRef = React.useRef(null);
+    const [imgSrc, setImgSrc] = React.useState(null);
+    const [hasCaptured, setHasCaptured] = React.useState(false);
+    const capture = React.useCallback(() => {
+        const imageSrc = webcamRef.current.getScreenshot();
+        setImgSrc(imageSrc);
+        setHasCaptured(true);
+    }, [webcamRef, setImgSrc]);
+
+    const dataURLtoBlob = (dataurl) => {
+        var arr = dataurl.split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]),
+            n = bstr.length,
+            u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new Blob([u8arr], { type: mime });
+    };
 
     return (
         <MainCard fullWidth={false} title="Add New Member">
@@ -155,7 +195,7 @@ const AddMember = (props, { ...others }) => {
 
                         <FormControl>
                             <Box
-                                sx={{ width: 300 }}
+                                sx={{ width: 320 }}
                                 display="flex"
                                 textAlign="center"
                                 justifyContent="center"
@@ -167,33 +207,53 @@ const AddMember = (props, { ...others }) => {
                                 // backgroundColor={'pink'}
                             >
                                 <Avatar sx={{ width: 300, height: 300 }} src={avatarPreview} />
-
-                                <Button
-                                    sx={{ width: 150, height: 30 }}
-                                    variant="contained"
-                                    component="label"
-                                    startIcon={<CloudUploadIcon />}
+                                <Box
+                                    sx={{ width: 320, mt: 2 }}
+                                    display="flex"
+                                    textAlign="center"
+                                    justifyContent="center"
+                                    flexDirection="row"
+                                    // justifyItems={'center'}
+                                    // alignContent={'center'}
+                                    // alignItems={'center'}
+                                    // alignSelf={'center'}
+                                    // backgroundColor={'pink'}
                                 >
-                                    Choose Photo
-                                    <input
-                                        name="userPicture"
-                                        accept="image/*"
-                                        id="contained-button-file"
-                                        type="file"
-                                        hidden
-                                        onChange={(e) => {
-                                            const fileReader = new FileReader();
-                                            fileReader.onload = () => {
-                                                if (fileReader.readyState === 2) {
-                                                    setUserPicture(e.target.files[0]);
+                                    <Button variant="contained" component="label" startIcon={<CloudUploadIcon />}>
+                                        Choose Photo
+                                        <input
+                                            name="userPicture"
+                                            accept="image/*"
+                                            id="contained-button-file"
+                                            type="file"
+                                            hidden
+                                            onChange={(e) => {
+                                                const fileReader = new FileReader();
+                                                fileReader.onload = () => {
+                                                    if (fileReader.readyState === 2) {
+                                                        setUserPicture(e.target.files[0]);
 
-                                                    setAvatarPreview(fileReader.result);
-                                                }
-                                            };
-                                            fileReader.readAsDataURL(e.target.files[0]);
+                                                        setAvatarPreview(fileReader.result);
+                                                    }
+                                                };
+                                                fileReader.readAsDataURL(e.target.files[0]);
+                                            }}
+                                        />
+                                    </Button>
+
+                                    <span style={{ margin: 2 }} />
+
+                                    <Button
+                                        onClick={() => {
+                                            setModalOpen(true);
                                         }}
-                                    />
-                                </Button>
+                                        variant="contained"
+                                        component="label"
+                                        startIcon={<CapturePictureIcon />}
+                                    >
+                                        Capture Photo
+                                    </Button>
+                                </Box>
                             </Box>
                         </FormControl>
 
@@ -229,6 +289,100 @@ const AddMember = (props, { ...others }) => {
                     </form>
                 )}
             </Formik>
+
+            <Modal
+                open={modalOpen}
+                onClose={() => {
+                    setModalOpen(false);
+                }}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={modalStyle}>
+                    <Box
+                        // style={{ margin: 5 }}
+                        display="flex"
+                        textAlign="center"
+                        flexDirection="column"
+                        alignItems={'center'}
+                        alignSelf={'center'}
+                    >
+                        {hasCaptured ? (
+                            <img src={imgSrc} />
+                        ) : (
+                            <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" mirrored={true} />
+                        )}
+
+                        <Box
+                            sx={{ margin: 1 }}
+                            display="flex"
+                            textAlign="center"
+                            justifyContent="center"
+                            flexDirection="row"
+                            alignItems={'center'}
+                            alignSelf={'center'}
+                        >
+                            <AnimateButton>
+                                <Button
+                                    disableElevation={false}
+                                    disabled={false}
+                                    fullWidth={false}
+                                    size="large"
+                                    type="submit"
+                                    variant="contained"
+                                    color="primary"
+                                    startIcon={hasCaptured ? <ReCapturePictureIcon /> : <CapturePictureIcon />}
+                                    onClick={() => {
+                                        if (hasCaptured) setHasCaptured(false);
+                                        else capture();
+                                    }}
+                                >
+                                    {hasCaptured ? 'Recapture' : 'Capture photo'}
+                                </Button>
+                            </AnimateButton>
+                            <span style={{ margin: 5 }} />
+
+                            <AnimateButton>
+                                <Button
+                                    disableElevation={false}
+                                    disabled={!hasCaptured}
+                                    fullWidth={false}
+                                    size="large"
+                                    type="submit"
+                                    variant="contained"
+                                    component="label"
+                                    startIcon={<MarkAttendanceIcon color="primaryLight" />}
+                                    color="success"
+                                    onClick={() => {
+                                        try {
+                                            const blob = dataURLtoBlob(imgSrc);
+                                            setUserPicture(blob);
+
+                                            setAvatarPreview(imgSrc);
+                                            setModalOpen(false);
+                                        } catch (err) {
+                                            console.error({ loginErrorMsg: err });
+                                            setModalOpen(false);
+                                        }
+                                    }}
+                                >
+                                    Select
+                                </Button>
+                            </AnimateButton>
+                        </Box>
+
+                        <Button
+                            onClick={() => {
+                                setModalOpen(false);
+                            }}
+                            color={'error'}
+                            variant="text"
+                        >
+                            Cancel
+                        </Button>
+                    </Box>
+                </Box>
+            </Modal>
         </MainCard>
     );
 };
