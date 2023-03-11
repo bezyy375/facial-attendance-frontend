@@ -14,6 +14,7 @@ import {
     IconButton,
     InputAdornment,
     InputLabel,
+    LinearProgress,
     Modal,
     OutlinedInput,
     Stack,
@@ -120,7 +121,7 @@ const AddMember = (props, { ...others }) => {
     };
 
     return (
-        <MainCard fullWidth={false} title="Add New Member">
+        <MainCard title="Add New Member">
             <Formik
                 initialValues={{
                     name: 'Bilal Ameri',
@@ -149,6 +150,8 @@ const AddMember = (props, { ...others }) => {
                                 console.log({ apiResonse: response });
                                 if (response.data.success) {
                                     console.log({ responseData: response.data });
+                                    setErrors({ submit: response.data.msg });
+                                    setSubmitting(false);
                                 } else {
                                     setStatus({ success: false });
                                     setErrors({ submit: response.data.msg });
@@ -286,6 +289,11 @@ const AddMember = (props, { ...others }) => {
                                 </Button>
                             </AnimateButton>
                         </Box>
+                        {isSubmitting ? (
+                            <Box sx={{ width: '100%' }}>
+                                <LinearProgress />
+                            </Box>
+                        ) : null}
                     </form>
                 )}
             </Formik>
