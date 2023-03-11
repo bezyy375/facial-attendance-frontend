@@ -2,9 +2,9 @@ import React from 'react';
 
 // material-ui
 import { Typography } from '@material-ui/core';
+import MainCard from '../../ui-component/cards/MainCard';
 
 // project imports
-import MainCard from '../../ui-component/cards/MainCard';
 
 //==============================|| SAMPLE PAGE ||==============================//
 

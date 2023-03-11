@@ -135,11 +135,10 @@ const ProfileSection = () => {
         console.log(account.token);
         dispatcher({ type: LOGOUT });
 
-        
         // axios
         //     .post( configData.API_SERVER + 'users/logout', {token: `${account.token}`}, { headers: { Authorization: `${account.token}` } })
         //     .then(function (response) {
-                
+
         //         // Force the LOGOUT
         //         //if (response.data.success) {
         //             dispatcher({ type: LOGOUT });
@@ -220,7 +219,7 @@ const ProfileSection = () => {
                                             <Grid item className={classes.flex}>
                                                 <Typography variant="h4">Good Morning,</Typography>
                                                 <Typography component="span" variant="h4" className={classes.name}>
-                                                    John
+                                                    Test
                                                 </Typography>
                                             </Grid>
                                             <Grid item>
