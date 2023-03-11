@@ -5,7 +5,7 @@ import { IconBrandChrome, IconDashboard, IconDeviceAnalytics } from '@tabler/ico
 const icons = {
     IconDashboard: IconDashboard,
     IconDeviceAnalytics,
-     IconBrandChrome: IconBrandChrome,
+    IconBrandChrome: IconBrandChrome
 };
 
 //-----------------------|| DASHBOARD MENU ITEMS ||-----------------------//
@@ -15,7 +15,7 @@ export const attendance = {
     title: 'Attendance',
     type: 'group',
     children: [
-         {
+        {
             id: 'mark-attendance',
             title: 'Mark Attendance',
             type: 'item',
@@ -23,13 +23,22 @@ export const attendance = {
             icon: icons['IconBrandChrome'],
             breadcrumbs: false
         },
-              {
+        {
+            id: 'mark-picattendance',
+            title: 'Mark Picture Attendance',
+            type: 'item',
+            url: '/markpicattendance-page',
+            icon: icons['IconBrandChrome'],
+            breadcrumbs: false
+        },
+        ,
+        {
             id: 'view-attendance',
             title: 'View Attendance',
             type: 'item',
             url: '/viewattendance-page',
             icon: icons['IconBrandChrome'],
             breadcrumbs: false
-        },
+        }
     ]
 };

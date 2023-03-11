@@ -23,6 +23,7 @@ const SamplePage = Loadable(lazy(() => import('../views/sample-page')));
 const AddMember = Loadable(lazy(() => import('../views/0_MemberViews/addmember-page')));
 const ViewMembers = Loadable(lazy(() => import('../views/0_MemberViews/viewmembers-page')));
 const MarkAttendance = Loadable(lazy(() => import('../views/1_AttendanceViews/markattendance-page')));
+const MarkPicAttendance = Loadable(lazy(() => import('../views/1_AttendanceViews/markpicattendance-page')));
 const ViewAttendance = Loadable(lazy(() => import('../views/1_AttendanceViews/viewattendance-page')));
 
 //-----------------------|| MAIN ROUTING ||-----------------------//
@@ -46,6 +47,7 @@ const MainRoutes = () => {
                 '/addmember-page',
                 '/viewmembers-page',
                 '/markattendance-page',
+                '/markpicattendance-page',
                 '/viewattendance-page'
             ]}
         >
@@ -64,6 +66,7 @@ const MainRoutes = () => {
                         <Route path="/addmember-page" component={AddMember} />
                         <Route path="/viewmembers-page" component={ViewMembers} />
                         <Route path="/markattendance-page" component={MarkAttendance} />
+                        <Route path="/markpicattendance-page" component={MarkPicAttendance} />
                         <Route path="/viewattendance-page" component={ViewAttendance} />
                     </AuthGuard>
                 </Switch>
