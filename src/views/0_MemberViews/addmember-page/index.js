@@ -31,6 +31,8 @@ import AnimateButton from '../../../ui-component/extended/AnimateButton';
 import MainCard from '../../../ui-component/cards/MainCard';
 
 import CloudUploadIcon from '@material-ui/icons/CloudUploadOutlined';
+import ViewPhotoIcon from '@material-ui/icons/Preview';
+import NextStepIcon from '@material-ui/icons/KeyboardTab';
 import CapturePictureIcon from '@material-ui/icons/CameraAlt';
 import ReCapturePictureIcon from '@material-ui/icons/FlipCameraIos';
 import MarkAttendanceIcon from '@material-ui/icons/CheckCircle';
@@ -72,6 +74,10 @@ const useStyles = makeStyles((theme) => ({
     },
     loginInput: {
         ...theme.typography.customInput
+    },
+
+    interImage: {
+        margin: '16px'
     }
 }));
 
@@ -97,7 +103,11 @@ const AddMember = (props, { ...others }) => {
     );
 
     const [userPicture, setUserPicture] = useState('--');
+    const [showPhotos, setShouldShowPhotos] = useState(false);
+    const [photosPath, setPhotosPath] = useState(null);
+    const [enlargedPhotoPath, setEnlargedPhotoPath] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
+    const [enlargePhotoModalOpen, setEnlargePhotoModal] = useState(false);
 
     const webcamRef = React.useRef(null);
     const [imgSrc, setImgSrc] = React.useState(null);
@@ -107,6 +117,47 @@ const AddMember = (props, { ...others }) => {
         setImgSrc(imageSrc);
         setHasCaptured(true);
     }, [webcamRef, setImgSrc]);
+
+    const renderInterInfo = (textToDisplay, imageName) => {
+        return (
+            <Box
+                // style={{ margin: 5 }}
+                display="flex"
+                textAlign="center"
+                flexDirection="column"
+                alignItems={'center'}
+                alignSelf={'center'}
+                justifyContent={'center'}
+                backgroundColor={'lightgray'}
+                borderRadius={3}
+                margin={3}
+            >
+                <img
+                    className={classes.interImage}
+                    alt="OriginalFace"
+                    width="100"
+                    height="100"
+                    viewBox="0 0 100 100"
+                    fill="none"
+                    src={photosPath + imageName}
+                />
+                <Typography variant="h6" color="secondary">
+                    {textToDisplay}
+                </Typography>
+                <Button
+                    onClick={() => {
+                        setEnlargedPhotoPath(photosPath + imageName);
+                        setEnlargePhotoModal(true);
+                    }}
+                    variant="contained"
+                    component="label"
+                    startIcon={<ViewPhotoIcon />}
+                >
+                    Enlarge Photo
+                </Button>
+            </Box>
+        );
+    };
 
     const dataURLtoBlob = (dataurl) => {
         var arr = dataurl.split(','),
@@ -124,7 +175,7 @@ const AddMember = (props, { ...others }) => {
         <MainCard title="Add New Member">
             <Formik
                 initialValues={{
-                    name: 'Bilal Ameri',
+                    name: '',
                     picture: userPicture,
                     submit: null
                 }}
@@ -152,10 +203,15 @@ const AddMember = (props, { ...others }) => {
                                     console.log({ responseData: response.data });
                                     setErrors({ submit: response.data.msg });
                                     setSubmitting(false);
+
+                                    setShouldShowPhotos(true);
+                                    setPhotosPath(response.data.inter_photos_dir);
                                 } else {
                                     setStatus({ success: false });
                                     setErrors({ submit: response.data.msg });
                                     setSubmitting(false);
+                                    setShouldShowPhotos(false);
+                                    setPhotosPath(null);
                                 }
                             })
                             .catch(function (error) {
@@ -164,6 +220,8 @@ const AddMember = (props, { ...others }) => {
                                 // setErrors({ submit: error.response.data.msg });
                                 setErrors({ submit: error.response.data.msg || 'Member adding failed. ' });
                                 setSubmitting(false);
+                                setShouldShowPhotos(false);
+                                setPhotosPath(null);
                             });
                     } catch (err) {
                         console.error({ loginErrorMsg: err });
@@ -270,6 +328,27 @@ const AddMember = (props, { ...others }) => {
                             </Box>
                         )}
 
+                        {showPhotos && (
+                            <Box
+                                // style={{ margin: 5 }}
+                                display="flex"
+                                textAlign="center"
+                                flexDirection="row"
+                                alignItems={'center'}
+                                alignSelf={'center'}
+                                justifyContent={'center'}
+                            >
+                                {/* {photosPath} */}
+
+                                {renderInterInfo('Original Image', 'original.png')}
+                                <NextStepIcon color={'secondary'} />
+                                {renderInterInfo('Extracted Face', 'face_boundary.png')}
+                                <NextStepIcon color={'secondary'} />
+                                {renderInterInfo('Face Landmarks', 'face_landmarks.png')}
+                                <NextStepIcon color={'secondary'} />
+                                {renderInterInfo('Cropped Face', 'face_cropped.png')}
+                            </Box>
+                        )}
                         <Box
                             sx={{
                                 mt: 2
@@ -387,6 +466,38 @@ const AddMember = (props, { ...others }) => {
                             variant="text"
                         >
                             Cancel
+                        </Button>
+                    </Box>
+                </Box>
+            </Modal>
+
+            <Modal
+                open={enlargePhotoModalOpen}
+                onClose={() => {
+                    setEnlargePhotoModal(false);
+                }}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={modalStyle}>
+                    <Box
+                        // style={{ margin: 5 }}
+                        display="flex"
+                        textAlign="center"
+                        flexDirection="column"
+                        alignItems={'center'}
+                        alignSelf={'center'}
+                    >
+                        <img src={enlargedPhotoPath} />
+
+                        <Button
+                            onClick={() => {
+                                setEnlargePhotoModal(false);
+                            }}
+                            color={'error'}
+                            variant="text"
+                        >
+                            Close
                         </Button>
                     </Box>
                 </Box>
